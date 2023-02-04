@@ -19,7 +19,7 @@ public class getPhPClient {
         return address;
     }
     public static void makesurePhpClient(){
-        JOptionPane.showMessageDialog(null,"Your Php Client Address was : " + BoyLoader.phpClient + "/phpClient.php\nMake Sure it if had something wrong!");
+        JOptionPane.showMessageDialog(null,"Your Php Client Address was : " + BoyLoader.phpClient + "/phpClient.php\nMake Sure it if had nothing wrong!");
         HttpUtils.doGet(BoyLoader.phpClient+"/phpClient.php");
     }
 }

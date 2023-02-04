@@ -24,5 +24,13 @@ public class MakeConfig {
         File configFile = new File(BoyLoader.WorkingDir+BoyLoader.sqlitSigh+configName);
         configFile.mkdir();
     }
+    public static boolean isHasDownloads(){
+        File downloadFile = new File(BoyLoader.WorkingDir+BoyLoader.sqlitSigh+"CirDownload");
+        if (downloadFile.exists()){
+            return false;
+        }else {
+            return true;
+        }
+    }
 
 }
